@@ -27,9 +27,11 @@ public class EntryAdapter extends ArrayAdapter<Entry> {
 
         TextView title = (TextView) convertView.findViewById(R.id.title);
         TextView num = (TextView) convertView.findViewById(R.id.num);
+        TextView time = (TextView) convertView.findViewById(R.id.time);
 
         title.setText(current.title);
         num.setText(String.valueOf(current.num));
+        time.setText(current.entry_date + " " + Utils.toTime(current.entry_time));
 
         return convertView;
     }
