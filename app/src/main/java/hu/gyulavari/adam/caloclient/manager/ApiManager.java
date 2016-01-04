@@ -46,7 +46,9 @@ public class ApiManager {
         api.login("password", CLIENT_ID, CLIENT_SECRET, email, password).enqueue(new Callback<TokenResponse>() {
             @Override
             public void onResponse(Response<TokenResponse> response, Retrofit retrofit) {
-                token = response.body().access_token;
+                if (response.code() == 200) {
+                    token = response.body().access_token;
+                }
                 cb.onResponse(response, retrofit);
             }
 

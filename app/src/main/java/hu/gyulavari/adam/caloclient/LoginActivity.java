@@ -182,12 +182,19 @@ public class LoginActivity extends AppCompatActivity {
         ApiManager.getInstance().login(email, password, new Callback<TokenResponse>() {
             @Override
             public void onResponse(Response<TokenResponse> response, Retrofit retrofit) {
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                if (response.code() == 200)
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                else {
+                    mEmailView.setError(getString(R.string.error_incorrect_password));
+                    showProgress(false);
+                }
             }
 
             @Override
             public void onFailure(Throwable t) {
                 t.printStackTrace();
+                mEmailView.setError("Something went wong.");
+                showProgress(false);
             }
         });
     }
