@@ -1,0 +1,4 @@
+<resources>
+    <string name="client_id">CaloClient</string>
+    <string name="client_secret">Settings</string>
+</resources>
